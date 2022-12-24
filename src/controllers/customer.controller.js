@@ -6,7 +6,7 @@ const createCustomer = async (req, res) => {
         const newCostumer = await Customer.create(
             {nombre, apellido, sexo, fecha_de_nacimiento, direccion, telefono, email});
         return res.status(201).json({
-            location: `/customers/${newCostumer.id}`,
+            location: `/api/customers/${newCostumer.id}`,
             customer:  newCostumer});
 
     } catch (error) {

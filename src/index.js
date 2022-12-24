@@ -15,7 +15,7 @@ app.use(morgan('dev'));
 
 //Routes
 const customerRouter = require('./routes/customer.routes')
-app.use(customerRouter)
+app.use('/api', customerRouter)
 
 //Error Handling
 app.all('*', (req, res, next)=>{
@@ -34,3 +34,6 @@ const main = async () => {
 }
 
 main();
+
+
+module.exports = app
