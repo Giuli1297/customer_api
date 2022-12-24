@@ -54,15 +54,26 @@ const deleteCustomer = async (req, res) => {
     try {
         const id = req.params.id
 
+        const customer = await Customer.findOne({
+            where: {
+                id: +id
+            }
+        })
+
         await Customer.destroy({
             where: {
                 id: +id
             }
         })
 
-        return res.status(204).json({
-            message: `El cliente con id ${id} se ha eliminado.`
-        })
+        if(customer) {
+            return res.status(204).send()
+        }
+        else {
+            return res.status(404).json({
+                message: "Not found"
+            })
+        }
     }
     catch (error) {
         return res.status(500).json({message: error.message});
@@ -85,9 +96,25 @@ const updateCustomer = async (req, res) => {
             }
         )
 
-        return res.status(200).json({
-            message: `El cliente con id ${id} se ha actualizado.`
+        const customer = await Customer.findOne({
+            where: {
+                id: +id
+            }
         })
+
+        if(customer) {
+            return res.status(200).json({
+                message: `El cliente con id ${id} se ha actualizado.`,
+                location: `/customers/${customer.id}`,
+                customer:  customer
+            })
+        }
+        else {
+            return res.status(404).json({
+                message: "Not found"
+            })
+        }
+
     }
     catch (error) {
         return res.status(500).json({message: error.message});
