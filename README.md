@@ -4,9 +4,18 @@
 
 Buscamos implementar una API para operacion CRUD sobre un modelo de clientes.
 
-### Dependencies
+### Dependencias
 
 * node.js
+
+### Librerias utilizadas
+
+* Sequelize
+* Express (Framework)
+* sqlite3
+* swagger-jsdoc
+* swagger-ui-express
+* morgan
 
 ### Instalacion
 
