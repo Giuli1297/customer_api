@@ -105,7 +105,7 @@ const updateCustomer = async (req, res) => {
         if(customer) {
             return res.status(200).json({
                 message: `El cliente con id ${id} se ha actualizado.`,
-                location: `/customers/${customer.id}`,
+                location: `/api/customers/${customer.id}`,
                 customer:  customer
             })
         }
